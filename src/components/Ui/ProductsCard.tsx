@@ -1,7 +1,6 @@
 import {Box, Grid, Typography} from "@mui/material";
 import productImg from '../../assets/images/arm-chair-01.jpg'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-import {motion} from "framer-motion";
 
 const ProductsCard = () => {
 	return (
