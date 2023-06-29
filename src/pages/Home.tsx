@@ -7,6 +7,8 @@ import {Link} from "react-router-dom";
 import Services from "../services/Services";
 import ProductsList from "../components/Ui/ProductsList";
 import products, {ProductData} from "../assets/data/products";
+import counterImg from '../assets/images/counter-timer-img.png'
+import Clock from "../components/Ui/Clock";
 
 const Paragraph = styled('p')({
 	color: '#0a1d37',
@@ -102,6 +104,37 @@ const Home: React.FC = () => {
 							</Typography>
 						</Grid>
 						<ProductsList data={bestSalesProducts}/>
+					</Grid>
+				</Container>
+			</Box>
+			<Box component='section' sx={{backgroundColor: '#0a1d37'}}>
+				<Container maxWidth='lg' sx={{paddingTop: '50px'}}>
+					<Grid container>
+						<Grid item lg={6} md={6}>
+							<Typography component='h4'
+							            variant='h4'
+							            color='white'
+							            mb='10px'
+							>
+								Limited offers
+							</Typography>
+							<Typography component='h3'
+							            variant='h3'
+							            color='white'
+							            mb='10px'
+							>
+								Quality Armchair
+							</Typography>
+							<Clock/>
+							<Button variant='contained' color='secondary' sx={{marginTop: '30px'}}>
+								<Link to='/shop'>
+									Visit store
+								</Link>
+							</Button>
+						</Grid>
+						<Grid item lg={6} md={6} sx={{textAlign: 'end'}}>
+							<Box component='img' src={counterImg} sx={{width: '70%', objectFit: 'contain'}}/>
+						</Grid>
 					</Grid>
 				</Container>
 			</Box>
