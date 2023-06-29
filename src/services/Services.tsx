@@ -15,7 +15,7 @@ const Services: React.FC = () => {
 
 	return (
 		<Container maxWidth='lg'>
-			<Grid container style={{marginTop: '20px'}}>
+			<Grid container style={{marginTop: '20px', marginBottom: '50px'}}>
 				{
 					serviceData.map((item) => (
 						<Grid item md={4} lg={3} key={item.title}>

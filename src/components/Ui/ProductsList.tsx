@@ -1,13 +1,19 @@
 import React from "react";
 import ProductsCard from "./ProductsCard";
+import {ProductData} from "../../assets/data/products";
 
-const ProductsList: React.FC = () => {
+interface ProductsListProps {
+	data: ProductData[]
+}
+
+const ProductsList: React.FC<ProductsListProps> = (props) => {
+	const {data} = props
+
 	return (
 		<>
-			<ProductsCard/>
-			<ProductsCard/>
-			<ProductsCard/>
-			<ProductsCard/>
+			{data?.map(item => (
+				<ProductsCard key={item.id} item={item}/>
+			))}
 		</>
 	);
 };

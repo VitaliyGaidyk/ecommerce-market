@@ -1,22 +1,37 @@
 import Helmet from "../components/Helmet/Helmet";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Box, Button, Container, Grid, styled, Typography} from "@mui/material";
 import hero from '../assets/images/hero-img.png'
 import {theme} from "../theme/theme";
 import {Link} from "react-router-dom";
 import Services from "../services/Services";
 import ProductsList from "../components/Ui/ProductsList";
+import products, {ProductData} from "../assets/data/products";
 
 const Paragraph = styled('p')({
 	color: '#0a1d37',
 	lineHeight: '28px',
 })
+
 const Home: React.FC = () => {
+	const [trendingProducts, setTrendingProducts] = useState<ProductData[]>([])
+	const [bestSalesProducts, setBestSalesProducts] = useState<ProductData[]>([])
 	const year = new Date().getFullYear()
+
+	useEffect(() => {
+		const filteredTrendingProducts = products.filter(item => item.category === 'chair')
+		const filteredBestProducts = products.filter(item => item.category === 'sofa')
+
+		setTrendingProducts(filteredTrendingProducts)
+		setBestSalesProducts(filteredBestProducts)
+	}, [])
 
 	return (
 		<>
-			<Box sx={{backgroundColor: theme.palette.secondary.main}} pt='50px'>
+			<Box component='section'
+			     sx={{backgroundColor: theme.palette.secondary.main}}
+			     pt='50px'
+			>
 				<Helmet title={'Home'}>
 					<Container maxWidth='lg'>
 						<Grid container>
@@ -53,9 +68,12 @@ const Home: React.FC = () => {
 						</Grid>
 					</Container>
 				</Helmet>
+			</Box
+			>
+			<Box component='section'>
+				<Services/>
 			</Box>
-			<Services/>
-			<Box>
+			<Box component='section'>
 				<Container maxWidth='lg'>
 					<Grid container>
 						<Grid item lg={12}>
@@ -67,7 +85,23 @@ const Home: React.FC = () => {
 								Trending Products
 							</Typography>
 						</Grid>
-						<ProductsList/>
+						<ProductsList data={trendingProducts}/>
+					</Grid>
+				</Container>
+			</Box>
+			<Box component='section' pt='50px'>
+				<Container maxWidth='lg'>
+					<Grid container>
+						<Grid item lg={12}>
+							<Typography variant='h2'
+							            component='h2'
+							            textAlign='center'
+							            fontWeight={500}
+							>
+								Best Sales
+							</Typography>
+						</Grid>
+						<ProductsList data={bestSalesProducts}/>
 					</Grid>
 				</Container>
 			</Box>
