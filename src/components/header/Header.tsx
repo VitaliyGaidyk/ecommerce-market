@@ -22,7 +22,7 @@ const Wrapper = styled('div')({
 	height: '100%',
 })
 
-const Logo = styled('div')({
+export const Logo = styled('div')({
 	display: "flex",
 	alignItems: 'center',
 	columnGap: '8px',

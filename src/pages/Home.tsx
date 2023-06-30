@@ -15,17 +15,28 @@ const Paragraph = styled('p')({
 	lineHeight: '28px',
 })
 
+export const year = new Date().getFullYear()
+
 const Home: React.FC = () => {
 	const [trendingProducts, setTrendingProducts] = useState<ProductData[]>([])
 	const [bestSalesProducts, setBestSalesProducts] = useState<ProductData[]>([])
-	const year = new Date().getFullYear()
+	const [mobileProducts, setMobileProducts] = useState<ProductData[]>([])
+	const [wirelessProducts, setWirelessProducts] = useState<ProductData[]>([])
+	const [popularProducts, setPopularProducts] = useState<ProductData[]>([])
+
 
 	useEffect(() => {
 		const filteredTrendingProducts = products.filter(item => item.category === 'chair')
 		const filteredBestProducts = products.filter(item => item.category === 'sofa')
+		const filteredMobileProducts = products.filter(item => item.category === 'mobile')
+		const filteredWirelessProducts = products.filter(item => item.category === 'wireless')
+		const filteredPopularProducts = products.filter(item => item.category === 'watch')
 
 		setTrendingProducts(filteredTrendingProducts)
 		setBestSalesProducts(filteredBestProducts)
+		setMobileProducts(filteredMobileProducts)
+		setWirelessProducts(filteredWirelessProducts)
+		setPopularProducts(filteredPopularProducts)
 	}, [])
 
 	return (
@@ -91,7 +102,7 @@ const Home: React.FC = () => {
 					</Grid>
 				</Container>
 			</Box>
-			<Box component='section' pt='50px'>
+			<Box component='section' py='50px'>
 				<Container maxWidth='lg'>
 					<Grid container>
 						<Grid item lg={12}>
@@ -135,6 +146,31 @@ const Home: React.FC = () => {
 						<Grid item lg={6} md={6} sx={{textAlign: 'end'}}>
 							<Box component='img' src={counterImg} sx={{width: '70%', objectFit: 'contain'}}/>
 						</Grid>
+					</Grid>
+				</Container>
+			</Box>
+			<Box component='section' py='50px'>
+				<Container maxWidth='lg'>
+					<Grid container>
+						<Grid item lg={12}>
+							<Typography variant='h2' component='h2' textAlign='center'>
+								New Arrivals
+							</Typography>
+						</Grid>
+						<ProductsList data={mobileProducts}/>
+						<ProductsList data={wirelessProducts}/>
+					</Grid>
+				</Container>
+			</Box>
+			<Box component='section' py='50px'>
+				<Container maxWidth='lg'>
+					<Grid container>
+						<Grid item lg={12}>
+							<Typography variant='h2' component='h2' textAlign='center'>
+								Popular in Category
+							</Typography>
+						</Grid>
+						<ProductsList data={popularProducts}/>
 					</Grid>
 				</Container>
 			</Box>

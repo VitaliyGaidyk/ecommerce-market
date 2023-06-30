@@ -13,18 +13,26 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 	const {item} = props
 
 	return (
-		<Grid item lg={3} md={4} sx={{cursor: 'pointer', padding: '20px'}}>
-			<Box>
+		<Grid item lg={3} md={4} sx={{
+			cursor: 'pointer',
+			padding: '20px',
+			display: 'flex',
+			justifyContent: 'end',
+			flexDirection: 'column',
+			width: '100%'
+		}}>
+			<Box display='flex' justifyContent='center'>
 				<motion.div whileHover={{scale: 0.9}}>
-					<Box component='img' src={item.imgUrl}/>
+					<Box component='img' src={item.imgUrl} sx={{maxWidth: '200px'}}/>
 				</motion.div>
 			</Box>
-			<Box textAlign='center'>
+			<Box textAlign='center' display='flex'
+			     alignItems='center'
+			     flexDirection='column'>
 				<Typography variant="h3"
 				            component='h3'
 				            fontSize='1.2rem'
 				            fontWeight='600'
-				            marginTop='15px'
 				>
 					<Link to={`/shop/${item.id}`}>
 						{item.productName}
