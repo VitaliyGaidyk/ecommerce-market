@@ -70,22 +70,26 @@ const Footer: React.FC = () => {
 							Contact
 						</Typography>
 						<List>
-							<ListItem sx={{display: 'flex', justifyContent: 'space-between'}}>
+							<ListItem sx={{display: 'flex'}}>
 								<FmdGoodOutlinedIcon/>
-								<Typography component='p' color='white'>
+								<Typography component='p' color='white' ml='15px'>
 									SomeMockAddress 24
 								</Typography>
 							</ListItem>
-							<ListItem sx={{display: 'flex', justifyContent: 'space-between'}}>
+							<ListItem sx={{display: 'flex'}}>
 								<LocalPhoneOutlinedIcon/>
-								<Typography component='p' color='white'>
-									+1(23)45-67-890
+								<Typography component='p' color='white' ml='15px'>
+									<Link to='tel:+1(23)45-67-890'>
+										+1(23)45-67-890
+									</Link>
 								</Typography>
 							</ListItem>
-							<ListItem sx={{display: 'flex', justifyContent: 'space-between'}}>
+							<ListItem sx={{display: 'flex'}}>
 								<MailOutlineOutlinedIcon/>
-								<Typography component='p' color='white'>
-									mockEmail@email.com
+								<Typography component='p' color='white' ml='15px'>
+									<Link to='mailto:mockemail@email.com'>
+										mockemail@email.com
+									</Link>
 								</Typography>
 							</ListItem>
 						</List>
