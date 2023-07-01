@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 		<Box component='footer' py='50px' sx={{backgroundColor: '#0a1d37', color: 'white'}}>
 			<Container maxWidth='lg'>
 				<Grid container>
-					<Grid item lg={4}>
+					<Grid item lg={4} md={4} sm={12} sx={{marginBottom: {xs: '20px'}}}>
 						<Logo>
 							<Box>
 								<Typography variant='h1' component='h1'>
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
 							inventore laboriosam placeat quam quo rem vel.
 						</Typography>
 					</Grid>
-					<Grid item lg={3}>
+					<Grid item lg={3} md={3} sm={4} xs={5}>
 						<Typography component='h4' textAlign='center'>
 							Top Category
 						</Typography>

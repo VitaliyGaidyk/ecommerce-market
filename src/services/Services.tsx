@@ -2,6 +2,7 @@ import {Box, Container, Grid, Stack, styled, Typography} from "@mui/material";
 import React from "react";
 import serviceData from "../assets/data/serviceData";
 import {motion} from "framer-motion";
+import {theme} from "../theme/theme";
 
 const Icon = styled('i')({
 	padding: '10px',
@@ -9,28 +10,48 @@ const Icon = styled('i')({
 	borderRadius: '50%',
 	color: 'white',
 	fontWeight: 400,
+	[theme.breakpoints.down('md')]: {
+		padding: '5px'
+	}
+})
+
+const Card = styled('div')({
+	display: 'flex',
+	alignItems: 'center',
+	padding: '15px',
+	cursor: 'pointer',
+	borderRadius: '5px',
+	[theme.breakpoints.down('lg')]: {
+		marginLeft: '10px',
+		padding: '10px',
+	},
+	[theme.breakpoints.down('md')]: {
+		marginTop: '10px',
+	},
+	[theme.breakpoints.down('sm')]: {
+		width: '100%',
+	}
 })
 
 const Services: React.FC = () => {
 
 	return (
 		<Container maxWidth='lg'>
-			<Grid container style={{marginTop: '20px', marginBottom: '50px'}}>
+			<Grid container sx={{marginTop: '20px', marginBottom: '50px'}}>
 				{
 					serviceData.map((item) => (
-						<Grid item md={4} lg={3} key={item.title}>
+						<Grid item lg={3}
+						      md={3}
+						      sm={6}
+						      xs={12}
+						      key={item.title}
+						      sx={{display: 'flex', justifyContent: {xs: 'center', sm: 'center'}}}
+						>
 							<motion.div whileHover={{scale: 1.1}}>
 								<Stack direction='row'
 								       spacing={1}
 								>
-									<Box style={{backgroundColor: `${item.bg}`}}
-									     sx={{
-										     display: 'flex',
-										     alignItems: 'center',
-										     padding: '15px',
-										     cursor: 'pointer',
-										     borderRadius: '5px',
-									     }}>
+									<Card style={{backgroundColor: `${item.bg}`}}>
 										<Icon className={item.icon}/>
 										<Box component='span' marginLeft='10px'>
 											<Typography variant='h3'
@@ -48,7 +69,7 @@ const Services: React.FC = () => {
 												{item.subtitle}
 											</Typography>
 										</Box>
-									</Box>
+									</Card>
 								</Stack>
 							</motion.div>
 						</Grid>

@@ -13,7 +13,7 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 	const {item} = props
 
 	return (
-		<Grid item lg={3} md={4} sx={{
+		<Grid item lg={3} md={3} sm={3} xs={6} sx={{
 			cursor: 'pointer',
 			padding: '20px',
 			display: 'flex',

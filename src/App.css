@@ -21,6 +21,7 @@
 
 body {
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
 }
 
 h1,
@@ -58,13 +59,6 @@ img {
 }
 .active {
     font-weight: 600;
-}
-
-.active__menu {
-    display: block !important;
-}
-.mobile__menu {
-    display: block;
 }
 .sticky__header {
     width: 100%;

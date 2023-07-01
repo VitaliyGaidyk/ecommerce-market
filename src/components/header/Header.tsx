@@ -1,13 +1,13 @@
-import {Badge, Box, Container, ListItem, styled, Typography} from "@mui/material";
+import {Badge, Box, Container, Drawer, styled, Typography} from "@mui/material";
 import logo from '../../assets/images/eco-logo.png'
-import React, {useEffect, useRef} from "react";
-import {NavLink} from "react-router-dom";
+import React, {useEffect, useRef, useState} from "react";
 import userIcon from '../../assets/images/user-icon.png'
 import {motion} from "framer-motion";
 import {theme} from "../../theme/theme";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+import HeaderLinks from "./HeaderLinks";
 
 const MyHeader = styled('div')({
 	width: '100%',
@@ -32,7 +32,7 @@ export const Logo = styled('div')({
 })
 
 const Navigation = styled('div')({
-	[theme.breakpoints.down('sm')]: {
+	[theme.breakpoints.down('md')]: {
 		position: 'fixed',
 		top: 0,
 		left: 0,
@@ -51,17 +51,6 @@ const ListWrapper = styled('div')({
 	a: {
 		cursor: 'pointer',
 	},
-	[theme.breakpoints.down('sm')]: {
-		position: 'absolute',
-		top: 0,
-		right: 0,
-		width: '250px',
-		height: '100%',
-		backgroundColor: 'white',
-		flexDirection: 'column',
-		justifyContent: 'center',
-		alignItems: 'center',
-	}
 })
 
 const NavigationIcons = styled('div')({
@@ -72,29 +61,15 @@ const NavigationIcons = styled('div')({
 
 const MobileMenu = styled('div')({
 	display: 'none',
-	[theme.breakpoints.down('sm')]: {
+	[theme.breakpoints.down('md')]: {
 		display: 'block'
 	}
 })
 
-const navLinkPath = [
-	{
-		path: 'home',
-		display: 'Home'
-	},
-	{
-		path: 'shop',
-		display: 'Shop'
-	},
-	{
-		path: 'cart',
-		display: 'Cart'
-	},
-]
-
 const Header: React.FC = () => {
 	const headerRef = useRef<HTMLDivElement>(null)
 	const menuRef = useRef<HTMLDivElement>(null)
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
 	const stickyHeader = () => {
 		window.addEventListener('scroll', () => {
@@ -105,8 +80,6 @@ const Header: React.FC = () => {
 			}
 		})
 	}
-
-	const menuToggle = () => menuRef.current?.classList.toggle('active__menu')
 
 	useEffect(() => {
 		stickyHeader()
@@ -128,17 +101,9 @@ const Header: React.FC = () => {
 								</Typography>
 							</Box>
 						</Logo>
-						<Navigation ref={menuRef} onClick={menuToggle}>
+						<Navigation ref={menuRef} >
 							<ListWrapper>
-								{navLinkPath.map(item => (
-									<ListItem key={item.path}>
-										<NavLink to={item.path}
-										         className={(navClass) => navClass.isActive ? 'active' : undefined}
-										>
-											{item.display}
-										</NavLink>
-									</ListItem>
-								))}
+								<HeaderLinks/>
 							</ListWrapper>
 						</Navigation>
 						<NavigationIcons>
@@ -156,10 +121,15 @@ const Header: React.FC = () => {
 								<motion.img whileTap={{scale: 1.1}} src={userIcon}/>
 							</Box>
 							<MobileMenu>
-								<Box component='span' onClick={menuToggle} >
-									<MenuOutlinedIcon/>
-								</Box>
+								<MenuOutlinedIcon onClick={() => setIsDrawerOpen(true)}/>
 							</MobileMenu>
+							<Drawer open={isDrawerOpen}
+							        anchor='right'
+							        onClose={() => setIsDrawerOpen(false)}
+							        sx={{display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center'}}
+							>
+								<HeaderLinks/>
+							</Drawer>
 						</NavigationIcons>
 					</Wrapper>
 				</MyHeader>

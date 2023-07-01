@@ -55,8 +55,8 @@ const Home: React.FC = () => {
 									</Paragraph>
 									<Typography component='h2' variant='h2'
 									            color='#0a1d37'
-									            fontWeight={600}
 									            mt='20px'
+									            sx={{typography: {md: 'body1'}}}
 									>
 										Make your interior more Minimalistic & Modern
 									</Typography>
@@ -88,47 +88,43 @@ const Home: React.FC = () => {
 			</Box>
 			<Box component='section'>
 				<Container maxWidth='lg'>
+					<Typography variant='h2'
+					            component='h2'
+					            textAlign='center'
+					            fontWeight={500}
+					>
+						Trending Products
+					</Typography>
 					<Grid container>
-						<Grid item lg={12}>
-							<Typography variant='h2'
-							            component='h2'
-							            textAlign='center'
-							            fontWeight={500}
-							>
-								Trending Products
-							</Typography>
-						</Grid>
 						<ProductsList data={trendingProducts}/>
 					</Grid>
 				</Container>
 			</Box>
 			<Box component='section' py='50px'>
 				<Container maxWidth='lg'>
+					<Typography variant='h2'
+					            component='h2'
+					            textAlign='center'
+					            fontWeight={500}
+					>
+						Best Sales
+					</Typography>
 					<Grid container>
-						<Grid item lg={12}>
-							<Typography variant='h2'
-							            component='h2'
-							            textAlign='center'
-							            fontWeight={500}
-							>
-								Best Sales
-							</Typography>
-						</Grid>
 						<ProductsList data={bestSalesProducts}/>
 					</Grid>
 				</Container>
 			</Box>
 			<Box component='section' sx={{backgroundColor: '#0a1d37'}}>
 				<Container maxWidth='lg' sx={{paddingTop: '50px'}}>
+					<Typography component='h4'
+					            variant='h4'
+					            color='white'
+					            mb='10px'
+					>
+						Limited offers
+					</Typography>
 					<Grid container>
 						<Grid item lg={6} md={6}>
-							<Typography component='h4'
-							            variant='h4'
-							            color='white'
-							            mb='10px'
-							>
-								Limited offers
-							</Typography>
 							<Typography component='h3'
 							            variant='h3'
 							            color='white'
@@ -137,7 +133,10 @@ const Home: React.FC = () => {
 								Quality Armchair
 							</Typography>
 							<Clock/>
-							<Button variant='contained' color='secondary' sx={{marginTop: '30px'}}>
+							<Button variant='contained'
+							        color='secondary'
+							        sx={{marginTop: '30px'}}
+							>
 								<Link to='/shop'>
 									Visit store
 								</Link>
@@ -151,12 +150,10 @@ const Home: React.FC = () => {
 			</Box>
 			<Box component='section' py='50px'>
 				<Container maxWidth='lg'>
+					<Typography variant='h2' component='h2' textAlign='center'>
+						New Arrivals
+					</Typography>
 					<Grid container>
-						<Grid item lg={12}>
-							<Typography variant='h2' component='h2' textAlign='center'>
-								New Arrivals
-							</Typography>
-						</Grid>
 						<ProductsList data={mobileProducts}/>
 						<ProductsList data={wirelessProducts}/>
 					</Grid>
@@ -164,12 +161,10 @@ const Home: React.FC = () => {
 			</Box>
 			<Box component='section' py='50px'>
 				<Container maxWidth='lg'>
+					<Typography variant='h2' component='h2' textAlign='center'>
+						Popular in Category
+					</Typography>
 					<Grid container>
-						<Grid item lg={12}>
-							<Typography variant='h2' component='h2' textAlign='center'>
-								Popular in Category
-							</Typography>
-						</Grid>
 						<ProductsList data={popularProducts}/>
 					</Grid>
 				</Container>
