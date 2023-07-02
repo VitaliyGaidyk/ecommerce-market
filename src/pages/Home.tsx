@@ -77,7 +77,6 @@ const Home: React.FC = () => {
 									<Box component='img' src={hero}/>
 								</Box>
 							</Grid>
-
 						</Grid>
 					</Container>
 				</Helmet>
@@ -120,18 +119,20 @@ const Home: React.FC = () => {
 					            variant='h4'
 					            color='white'
 					            mb='10px'
+					            textAlign='center'
 					>
 						Limited offers
 					</Typography>
+					<Typography component='h3'
+					            variant='h3'
+					            color='white'
+					            mb='10px'
+					            textAlign='center'
+					>
+						Quality Armchair
+					</Typography>
 					<Grid container>
 						<Grid item lg={6} md={6}>
-							<Typography component='h3'
-							            variant='h3'
-							            color='white'
-							            mb='10px'
-							>
-								Quality Armchair
-							</Typography>
 							<Clock/>
 							<Button variant='contained'
 							        color='secondary'

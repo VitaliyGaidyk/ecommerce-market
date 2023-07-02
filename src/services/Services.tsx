@@ -27,10 +27,8 @@ const Card = styled('div')({
 	},
 	[theme.breakpoints.down('md')]: {
 		marginTop: '10px',
-	},
-	[theme.breakpoints.down('sm')]: {
 		width: '100%',
-	}
+	},
 })
 
 const Services: React.FC = () => {
@@ -45,11 +43,12 @@ const Services: React.FC = () => {
 						      sm={6}
 						      xs={12}
 						      key={item.title}
-						      sx={{display: 'flex', justifyContent: {xs: 'center', sm: 'center'}}}
+						      sx={{width: {xs: '100%'}, display: 'flex', justifyContent: {xs: 'start', sm: 'center'}}}
 						>
-							<motion.div whileHover={{scale: 1.1}}>
+							<motion.div whileHover={{scale: 1.1}} style={{width: '100%'}}>
 								<Stack direction='row'
 								       spacing={1}
+								       sx={{width: {xs: '100%'}}}
 								>
 									<Card style={{backgroundColor: `${item.bg}`}}>
 										<Icon className={item.icon}/>

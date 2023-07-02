@@ -44,15 +44,15 @@ const Clock: React.FC = () => {
 			     gap='30px'
 			>
 				<Box textAlign='center'>
-					<Typography variant='h2'
-					            component='h2'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
 					            mb='5'
 					>
 						{days}
 					</Typography>
-					<Typography variant='h5'
-					            component='h5'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
 					            fontSize='1rem'
 					>
@@ -74,17 +74,16 @@ const Clock: React.FC = () => {
 			     gap='30px'
 			>
 				<Box textAlign='center'>
-					<Typography variant='h2'
-					            component='h2'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
 					            mb='5'
 					>
 						{hours}
 					</Typography>
-					<Typography variant='h5'
-					            component='h5'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
-					            fontSize='1rem'
 					>
 						Hours
 					</Typography>
@@ -104,8 +103,8 @@ const Clock: React.FC = () => {
 			     gap='30px'
 			>
 				<Box textAlign='center'>
-					<Typography variant='h2'
-					            component='h2'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
 					            mb='5'
 					>
@@ -134,8 +133,8 @@ const Clock: React.FC = () => {
 			     gap='30px'
 			>
 				<Box textAlign='center'>
-					<Typography variant='h2'
-					            component='h2'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
 					            mb='5'
 					>
