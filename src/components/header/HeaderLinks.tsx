@@ -30,7 +30,7 @@ const ListComponent = styled(List)({
 
 const HeaderLinks: React.FC = () => {
 	return (
-		<ListComponent sx={{width: '120px'}}>
+		<ListComponent sx={{width: {sm: '120px', md: 'auto'}}}>
 			{navLinkPath.map(item => (
 				<ListItem key={item.path}>
 					<NavLink to={item.path}

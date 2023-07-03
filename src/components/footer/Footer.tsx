@@ -1,6 +1,5 @@
 import React from "react";
 import {Box, Container, Grid, List, ListItem, Typography} from "@mui/material";
-import logo from "../../assets/images/eco-logo.png";
 import {Logo} from "../header/Header";
 import {Link} from "react-router-dom";
 import FmdGoodOutlinedIcon from '@mui/icons-material/FmdGoodOutlined';
@@ -9,6 +8,7 @@ import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import {year} from "../../pages/Home";
 
 const Footer: React.FC = () => {
+
 	return (
 		<Box component='footer' py='50px' sx={{backgroundColor: '#0a1d37', color: 'white'}}>
 			<Container maxWidth='lg'>
@@ -16,9 +16,11 @@ const Footer: React.FC = () => {
 					<Grid item lg={4} md={4} sm={12} sx={{marginBottom: {xs: '20px'}}}>
 						<Logo>
 							<Box>
-								<Typography variant='h1' component='h1'>
-									Market
-								</Typography>
+								<Link to='/'>
+									<Typography variant='h1' component='h1'>
+										Market
+									</Typography>
+								</Link>
 							</Box>
 						</Logo>
 						<Typography component='p' mt={4} color='white'>
@@ -28,7 +30,7 @@ const Footer: React.FC = () => {
 						</Typography>
 					</Grid>
 					<Grid item lg={3} md={3} sm={4} xs={5}>
-						<Typography component='h4' textAlign='center'>
+						<Typography component='h4'>
 							Top Category
 						</Typography>
 						<List>
@@ -47,7 +49,7 @@ const Footer: React.FC = () => {
 						</List>
 					</Grid>
 					<Grid item lg={2}>
-						<Typography component='h4' textAlign='center'>
+						<Typography component='h4'>
 							Useful links
 						</Typography>
 						<List>
@@ -66,7 +68,7 @@ const Footer: React.FC = () => {
 						</List>
 					</Grid>
 					<Grid item lg={3}>
-						<Typography component='h4' textAlign='center'>
+						<Typography component='h4'>
 							Contact
 						</Typography>
 						<List>

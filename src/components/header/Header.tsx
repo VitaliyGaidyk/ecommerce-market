@@ -8,6 +8,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import HeaderLinks from "./HeaderLinks";
+import {Link} from "react-router-dom";
 
 const MyHeader = styled('div')({
 	width: '100%',
@@ -89,19 +90,23 @@ const Header: React.FC = () => {
 
 
 	return (
-		<Box component='header' ref={headerRef}>
+		<Box component='header' ref={headerRef}
+		     sx={{transition: '.3s'}}
+		>
 			<Container maxWidth='lg'>
 				<MyHeader>
 					<Wrapper>
-						<Logo>
-							<Box component='img' src={logo} sx={{width: '30px'}}/>
-							<Box>
-								<Typography variant='h1' component='h1'>
-									Market
-								</Typography>
-							</Box>
-						</Logo>
-						<Navigation ref={menuRef} >
+						<Link to='/'>
+							<Logo>
+								<Box component='img' src={logo} sx={{width: '30px'}}/>
+								<Box>
+									<Typography variant='h1' component='h1'>
+										Market
+									</Typography>
+								</Box>
+							</Logo>
+						</Link>
+						<Navigation ref={menuRef}>
 							<ListWrapper>
 								<HeaderLinks/>
 							</ListWrapper>
@@ -126,7 +131,12 @@ const Header: React.FC = () => {
 							<Drawer open={isDrawerOpen}
 							        anchor='right'
 							        onClose={() => setIsDrawerOpen(false)}
-							        sx={{display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center'}}
+							        sx={{
+								        display: 'flex',
+								        flexDirection: 'column',
+								        width: '100%',
+								        justifyContent: 'center'
+							        }}
 							>
 								<HeaderLinks/>
 							</Drawer>

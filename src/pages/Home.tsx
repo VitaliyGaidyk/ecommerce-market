@@ -56,7 +56,7 @@ const Home: React.FC = () => {
 									<Typography component='h2' variant='h2'
 									            color='#0a1d37'
 									            mt='20px'
-									            sx={{typography: {md: 'body1'}}}
+									            sx={{fontWeight: {md: '500'}}}
 									>
 										Make your interior more Minimalistic & Modern
 									</Typography>

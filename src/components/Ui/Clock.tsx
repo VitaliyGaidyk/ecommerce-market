@@ -34,9 +34,11 @@ const Clock: React.FC = () => {
 	useEffect(() => {
 		contDown()
 	},)
+
 	return (
 		<Stack direction='row'
 		       gap='30px'
+		       mt='20px'
 		>
 			<Box display='flex'
 			     alignItems='center'
@@ -48,13 +50,14 @@ const Clock: React.FC = () => {
 					            component='h3'
 					            color='white'
 					            mb='5'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						{days}
 					</Typography>
 					<Typography variant='h3'
 					            component='h3'
 					            color='white'
-					            fontSize='1rem'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						Days
 					</Typography>
@@ -78,12 +81,14 @@ const Clock: React.FC = () => {
 					            component='h3'
 					            color='white'
 					            mb='5'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						{hours}
 					</Typography>
 					<Typography variant='h3'
 					            component='h3'
 					            color='white'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						Hours
 					</Typography>
@@ -107,13 +112,14 @@ const Clock: React.FC = () => {
 					            component='h3'
 					            color='white'
 					            mb='5'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						{minutes}
 					</Typography>
-					<Typography variant='h5'
-					            component='h5'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
-					            fontSize='1rem'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						Minutes
 					</Typography>
@@ -137,13 +143,14 @@ const Clock: React.FC = () => {
 					            component='h3'
 					            color='white'
 					            mb='5'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						{seconds}
 					</Typography>
-					<Typography variant='h5'
-					            component='h5'
+					<Typography variant='h3'
+					            component='h3'
 					            color='white'
-					            fontSize='1rem'
+					            sx={{fontSize: {md: '1.5rem'}}}
 					>
 						Seconds
 					</Typography>
