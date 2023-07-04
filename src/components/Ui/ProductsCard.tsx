@@ -3,30 +3,54 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import {motion} from "framer-motion";
 import {Link} from "react-router-dom";
 import React from "react";
-import {ProductData} from "../../assets/data/products";
+import {useAppDispatch} from "../../app/hooks";
+import {addItem} from "../../app/cartSlice";
 
 interface ProductsCardProps {
-	item: ProductData
+	id: string,
+	productName: string,
+	price: number,
+	imgUrl: string,
+	category?: string
 }
 
 const ProductsCard: React.FC<ProductsCardProps> = (props) => {
-	const {item} = props
+	const {id, productName, price, imgUrl, category} = props
+	const dispatch = useAppDispatch()
+
+	const addToCart = () => {
+		dispatch(addItem({
+			id,
+			productName,
+			price,
+			imgUrl,
+		}))
+		console.log('added')
+	}
 
 	return (
-		<Grid item lg={3} md={3} sm={3} xs={6} sx={{
-			cursor: 'pointer',
-			padding: '20px',
-			display: 'flex',
-			justifyContent: 'end',
-			flexDirection: 'column',
-			width: '100%'
-		}}>
-			<Box display='flex' justifyContent='center'>
+		<Grid item
+		      lg={3}
+		      md={3}
+		      sm={3}
+		      xs={6}
+		      sx={{
+			      cursor: 'pointer',
+			      padding: '20px',
+			      display: 'flex',
+			      justifyContent: 'end',
+			      flexDirection: 'column',
+			      width: '100%'
+		      }}>
+			<Box display='flex'
+			     justifyContent='center'
+			>
 				<motion.div whileHover={{scale: 0.9}}>
-					<Box component='img' src={item.imgUrl} sx={{maxWidth: '200px'}}/>
+					<Box component='img' src={imgUrl} sx={{maxWidth: '200px'}}/>
 				</motion.div>
 			</Box>
-			<Box textAlign='center' display='flex'
+			<Box textAlign='center'
+			     display='flex'
 			     alignItems='center'
 			     flexDirection='column'>
 				<Typography variant="h3"
@@ -34,12 +58,12 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 				            fontSize='1.2rem'
 				            fontWeight='600'
 				>
-					<Link to={`/shop/${item.id}`}>
-						{item.productName}
+					<Link to={`/shop/${id}`}>
+						{productName}
 					</Link>
 				</Typography>
 				<Box fontSize='.9rem'>
-					{item.category}
+					{category}
 				</Box>
 			</Box>
 			<Box display='flex'
@@ -51,11 +75,16 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 				     fontSize='1.3rem'
 				     fontWeight='500'
 				>
-					${item.price}
+					${price}
 				</Box>
-				<motion.div whileTap={{scale: 1.2}}>
+				<motion.div whileTap={{scale: 1.2}} onClick={addToCart}>
 					<AddOutlinedIcon fontSize='medium'
-					                 sx={{backgroundColor: '#0a1d37', color: 'white', padding: '5px', borderRadius: '50%'}}
+					                 sx={{
+						                 backgroundColor: '#0a1d37',
+						                 color: 'white',
+						                 padding: '5px',
+						                 borderRadius: '50%'
+					                 }}
 					/>
 				</motion.div>
 			</Box>

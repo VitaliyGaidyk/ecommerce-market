@@ -32,12 +32,12 @@ export interface ProductData {
 	id: string;
 	productName: string;
 	imgUrl: string;
-	category: string;
+	category?: string;
 	price: number;
-	shortDesc: string;
-	description: string;
-	reviews: Review[];
-	avgRating: number;
+	shortDesc?: string;
+	description?: string;
+	reviews?: Review[];
+	avgRating?: number;
 }
 
 interface Review {
