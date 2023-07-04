@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import React from "react";
 import {useAppDispatch} from "../../app/hooks";
 import {addItem} from "../../app/cartSlice";
+import {toast} from "react-toastify";
 
 interface ProductsCardProps {
 	id: string,
@@ -25,7 +26,7 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 			price,
 			imgUrl,
 		}))
-		console.log('added')
+		toast.success('Product added')
 	}
 
 	return (
@@ -41,7 +42,8 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 			      justifyContent: 'end',
 			      flexDirection: 'column',
 			      width: '100%'
-		      }}>
+		      }}
+		>
 			<Box display='flex'
 			     justifyContent='center'
 			>
