@@ -44,30 +44,33 @@ const ProductsCard: React.FC<ProductsCardProps> = (props) => {
 			      width: '100%'
 		      }}
 		>
-			<Box display='flex'
-			     justifyContent='center'
-			>
-				<motion.div whileHover={{scale: 0.9}}>
-					<Box component='img' src={imgUrl} sx={{maxWidth: '200px'}}/>
-				</motion.div>
-			</Box>
-			<Box textAlign='center'
-			     display='flex'
-			     alignItems='center'
-			     flexDirection='column'>
-				<Typography variant="h3"
-				            component='h3'
-				            fontSize='1.2rem'
-				            fontWeight='600'
+			<Link to={`/shop/${id}`}>
+				<Box display='flex'
+				     justifyContent='center'
 				>
-					<Link to={`/shop/${id}`}>
-						{productName}
-					</Link>
-				</Typography>
-				<Box fontSize='.9rem'>
-					{category}
+					<motion.div whileHover={{scale: 0.9}}>
+						<Box component='img' src={imgUrl} sx={{maxWidth: '200px'}}/>
+					</motion.div>
 				</Box>
-			</Box>
+				<Box textAlign='center'
+				     display='flex'
+				     alignItems='center'
+				     flexDirection='column'>
+					<Typography variant="h3"
+					            component='h3'
+					            fontSize='1.2rem'
+					            fontWeight='600'
+					>
+
+						<Typography component='p'>
+							{productName}
+						</Typography>
+					</Typography>
+					<Box fontSize='.9rem'>
+						{category}
+					</Box>
+				</Box>
+			</Link>
 			<Box display='flex'
 			     alignItems='center'
 			     justifyContent='space-between'
