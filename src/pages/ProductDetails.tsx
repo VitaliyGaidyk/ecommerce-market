@@ -1,12 +1,23 @@
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/Ui/CommonSection";
-import {Box, Button, Container, Grid, List, ListItem, styled, Tab, Tabs, Typography} from "@mui/material";
+import {
+	Box,
+	Button,
+	Container,
+	Grid,
+	List,
+	ListItem,
+	Rating,
+	styled,
+	Tab,
+	Tabs, TextField,
+	Typography
+} from "@mui/material";
 import React, {useState} from "react";
 import {useParams} from "react-router-dom";
 import products from "../assets/data/products";
-import StarPurple500OutlinedIcon from '@mui/icons-material/StarPurple500Outlined';
-import StarHalfOutlinedIcon from '@mui/icons-material/StarHalfOutlined';
 import CustomTabPanel, {a11yProps} from "../components/Ui/CustomTabPanel";
+import ProductsList from "../components/Ui/ProductsList";
 
 const DetailsWrapper = styled(Box)({
 	display: 'flex',
@@ -16,11 +27,13 @@ const DetailsWrapper = styled(Box)({
 })
 
 const ProductDetails: React.FC = () => {
-	const [value, setValue] = useState(0);
+	const [customPanel, setCustomPanel] = useState(0);
+	const [star, setStar] = useState<number | null>(2);
+	const [starItem, setStarItem] = useState<number | null>(4);
 	const {id} = useParams()
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
+	const handleChangeTabs = (event: React.SyntheticEvent, newValue: number) => {
+		setCustomPanel(newValue);
 	};
 
 	const product = products.find((item) => item.id === id)
@@ -28,7 +41,19 @@ const ProductDetails: React.FC = () => {
 	if (!product) {
 		return null
 	}
-	const {imgUrl, price, productName, avgRating, shortDesc, reviews, description} = product
+
+	const {
+		imgUrl,
+		price,
+		productName,
+		avgRating,
+		shortDesc,
+		reviews,
+		description,
+		category
+	} = product
+
+	const relatedProducts = products.filter((item) => item.category === category)
 
 	return (
 		<Helmet title={productName}>
@@ -46,11 +71,14 @@ const ProductDetails: React.FC = () => {
 										{productName}
 									</Typography>
 									<Box mt='5px'>
-										<StarPurple500OutlinedIcon/>
-										<StarPurple500OutlinedIcon/>
-										<StarPurple500OutlinedIcon/>
-										<StarPurple500OutlinedIcon/>
-										<StarHalfOutlinedIcon/>
+										<Rating
+											name="read-only"
+											readOnly
+											value={starItem}
+											onChange={(event, newValue) => {
+												setStarItem(newValue);
+											}}
+										/>
 									</Box>
 									<Typography component='p' mt='10'>
 										({avgRating} ratings)
@@ -81,19 +109,19 @@ const ProductDetails: React.FC = () => {
 					<Grid item lg={12}>
 						<Box sx={{display: 'flex', flexDirection: 'column'}}>
 							<Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-								<Tabs value={value}
-								      onChange={handleChange}
+								<Tabs value={customPanel}
+								      onChange={handleChangeTabs}
 								>
 									<Tab label="Description" {...a11yProps(0)} />
 									<Tab label={`Reviews ${reviews.length}`} {...a11yProps(1)} />
 								</Tabs>
 							</Box>
-							<CustomTabPanel value={value}
+							<CustomTabPanel value={customPanel}
 							                index={0}
 							>
 								{description}
 							</CustomTabPanel>
-							<CustomTabPanel value={value}
+							<CustomTabPanel value={customPanel}
 							                index={1}
 							>
 								<List>
@@ -115,9 +143,37 @@ const ProductDetails: React.FC = () => {
 										))
 									}
 								</List>
+								<Box sx={{display: 'flex', justifyContent: 'center', pb: '50px'}}>
+									<Box sx={{display: 'flex', flexDirection: 'column', minWidth: '400px'}}>
+										<TextField id="outlined-basic" label="Enter you name" variant="outlined"/>
+										<Rating
+											name="simple-controlled"
+											value={star}
+											onChange={(event, newValue) => {
+												setStar(newValue);
+											}}
+											sx={{mt: '20px'}}
+										/>
+										<TextField
+											id="standard-multiline-static"
+											label="Enter You Review"
+											variant="outlined"
+											multiline
+											rows={4}
+											sx={{mt: '20px'}}
+										/>
+									</Box>
+								</Box>
 							</CustomTabPanel>
 						</Box>
 					</Grid>
+					<Grid item lg={12}>
+						<Typography variant='h2' component='h2'>
+							You might also like
+						</Typography>
+					</Grid>
+
+					<ProductsList data={relatedProducts}/>
 				</Grid>
 			</Box>
 		</Helmet>

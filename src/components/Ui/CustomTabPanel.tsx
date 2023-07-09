@@ -25,7 +25,7 @@ const CustomTabPanel = (props: TabPanelProps) => {
 			aria-labelledby={`simple-tab-${index}`}
 		>
 			{value === index && (
-				<Box padding='10px'>
+				<Box padding='40px 10px 50px 10px'>
 					{children as React.ReactNode}
 				</Box>
 			)}
