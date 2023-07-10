@@ -14,11 +14,16 @@ import {
 	TableRow, Typography
 } from "@mui/material";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import {useAppSelector} from "../app/hooks";
-import {cartItem} from "../app/cartSlice";
+import {useAppDispatch, useAppSelector} from "../app/hooks";
+import {cartItem, deleteItem} from "../app/cartSlice";
 
 const Cart: React.FC = () => {
 	const cartItems = useAppSelector(cartItem)
+	const dispatch = useAppDispatch()
+
+	const deleteProduct = (id: string) => {
+		dispatch(deleteItem(id))
+	}
 
 	return <Helmet title='Cart'>
 		<CommonSection title='Shoping cart'/>
@@ -54,7 +59,10 @@ const Cart: React.FC = () => {
 														<TableCell>${item.price}</TableCell>
 														<TableCell>{item.quantity}</TableCell>
 														<TableCell>
-															<Box sx={{cursor: 'pointer'}}>
+															<Box component='div'
+															     sx={{cursor: 'pointer'}}
+															     onClick={() => deleteProduct(item.id)}
+															>
 																<DeleteOutlineOutlinedIcon/>
 															</Box>
 														</TableCell>
