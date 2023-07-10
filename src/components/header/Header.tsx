@@ -8,8 +8,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import HeaderLinks from "./HeaderLinks";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useAppSelector} from "../../app/hooks";
+import {totalItem} from "../../app/cartSlice";
 
 const MyHeader = styled('div')({
 	width: '100%',
@@ -71,8 +72,8 @@ const MobileMenu = styled('div')({
 const Header: React.FC = () => {
 	const headerRef = useRef<HTMLDivElement>(null)
 	const menuRef = useRef<HTMLDivElement>(null)
-	const totalQuantity = useAppSelector((state) => state.cart.totalQuantity)
-
+	const totalQuantity = useAppSelector(totalItem)
+	const navigate = useNavigate()
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
 	const stickyHeader = () => {
@@ -83,6 +84,10 @@ const Header: React.FC = () => {
 				headerRef.current?.classList.remove('sticky__header')
 			}
 		})
+	}
+
+	const navigateToCart = () => {
+		navigate('/cart')
 	}
 
 	useEffect(() => {
@@ -121,7 +126,10 @@ const Header: React.FC = () => {
 								</Badge>
 							</Box>
 							<Box component='span' sx={{position: 'relative'}}>
-								<Badge color='primary' badgeContent={totalQuantity}>
+								<Badge color='primary'
+								       badgeContent={totalQuantity}
+								       onClick={navigateToCart}
+								>
 									<ShoppingBagOutlinedIcon cursor='pointer'/>
 								</Badge>
 							</Box>

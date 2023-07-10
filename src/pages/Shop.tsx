@@ -69,8 +69,8 @@ const Shop: React.FC = () => {
 		<Helmet title='Shop'>
 			<CommonSection title='Products'/>
 			<Box mt='20px'>
-				<Grid container>
-					<Grid item lg={2} md={3}>
+				<Grid container sx={{display: 'flex', justifyContent: 'center'}}>
+					<Grid item lg={2} md={3} sm={3} xs={3}>
 						<FormControl fullWidth size="small">
 							<InputLabel id="first-select">
 								Select by category
@@ -88,7 +88,7 @@ const Shop: React.FC = () => {
 							</Select>
 						</FormControl>
 					</Grid>
-					<Grid item lg={2} md={3}>
+					<Grid item lg={2} md={3} sm={3} xs={3}>
 						<FormControl fullWidth size="small">
 							<InputLabel id="second-select">Sort by</InputLabel>
 							<Select id="second-label">
@@ -97,7 +97,7 @@ const Shop: React.FC = () => {
 							</Select>
 						</FormControl>
 					</Grid>
-					<Grid item lg={6} md={6}>
+					<Grid item lg={6} md={6} sm={6} xs={6}>
 						<FormControl fullWidth size="small">
 							<SearchBar handleSearch={handleSearch}/>
 						</FormControl>

@@ -7,17 +7,20 @@ import {
 	Grid,
 	List,
 	ListItem,
-	Rating,
+	Rating, Stack,
 	styled,
 	Tab,
 	Tabs, TextField,
 	Typography
 } from "@mui/material";
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import {useParams} from "react-router-dom";
 import products from "../assets/data/products";
 import CustomTabPanel, {a11yProps} from "../components/Ui/CustomTabPanel";
 import ProductsList from "../components/Ui/ProductsList";
+import {useAppDispatch} from "../app/hooks";
+import {addItem} from "../app/cartSlice";
+import {toast} from "react-toastify";
 
 const DetailsWrapper = styled(Box)({
 	display: 'flex',
@@ -30,6 +33,10 @@ const ProductDetails: React.FC = () => {
 	const [customPanel, setCustomPanel] = useState(0);
 	const [star, setStar] = useState<number | null>(2);
 	const [starItem, setStarItem] = useState<number | null>(4);
+	const reviewUser = useRef<HTMLInputElement | null>(null)
+	const reviewMessage = useRef<HTMLInputElement | null>(null)
+	const dispatch = useAppDispatch()
+
 	const {id} = useParams()
 
 	const handleChangeTabs = (event: React.SyntheticEvent, newValue: number) => {
@@ -52,6 +59,34 @@ const ProductDetails: React.FC = () => {
 		description,
 		category
 	} = product
+
+	const submitHandler = (event: React.SyntheticEvent) => {
+		event.preventDefault()
+
+		const reviewUserName = reviewUser.current?.value
+		const reviewUserMessage = reviewMessage.current?.value
+
+		const reviewItem = {
+			userName: reviewUserName,
+			text: reviewUserMessage,
+			rating: star,
+		}
+
+		toast.success('Review submitted!')
+	}
+
+	const addToCard = () => {
+		if (id) {
+			dispatch(addItem({
+				id,
+				imgUrl,
+				productName,
+				price,
+			}))
+		}
+
+		toast.success('Product added successfully')
+	}
 
 	const relatedProducts = products.filter((item) => item.category === category)
 
@@ -91,11 +126,16 @@ const ProductDetails: React.FC = () => {
 								>
 									{price} $
 								</Box>
+								<Box mt={2}>
+									Category: {category}
+								</Box>
 								<Typography mt='20px' component='p'>
 									{shortDesc}
 								</Typography>
 								<Box mt='20px'>
-									<Button variant='contained'>
+									<Button variant='contained'
+									        onClick={addToCard}
+									>
 										Add to card
 									</Button>
 								</Box>
@@ -144,25 +184,42 @@ const ProductDetails: React.FC = () => {
 									}
 								</List>
 								<Box sx={{display: 'flex', justifyContent: 'center', pb: '50px'}}>
-									<Box sx={{display: 'flex', flexDirection: 'column', minWidth: '400px'}}>
-										<TextField id="outlined-basic" label="Enter you name" variant="outlined"/>
-										<Rating
-											name="simple-controlled"
-											value={star}
-											onChange={(event, newValue) => {
-												setStar(newValue);
-											}}
-											sx={{mt: '20px'}}
-										/>
-										<TextField
-											id="standard-multiline-static"
-											label="Enter You Review"
-											variant="outlined"
-											multiline
-											rows={4}
-											sx={{mt: '20px'}}
-										/>
-									</Box>
+									<form onSubmit={submitHandler}>
+										<Stack sx={{display: 'flex', flexDirection: 'column', minWidth: '400px'}}>
+											<TextField id="outlined-basic"
+											           label="Enter you name"
+											           variant="outlined"
+											           required
+											           inputRef={reviewUser}
+											/>
+											<Rating
+												name="simple-controlled"
+												value={star}
+												onChange={(event, newValue) => {
+													setStar(newValue);
+												}}
+												sx={{mt: '20px'}}
+											/>
+											<TextField
+												id="standard-multiline-static"
+												label="Enter You Review"
+												variant="outlined"
+												multiline
+												rows={4}
+												required
+												inputRef={reviewMessage}
+												sx={{mt: '20px'}}
+											/>
+											<Box>
+												<Button type='submit'
+												        variant='contained'
+												        sx={{mt: '20px'}}
+												>
+													Send
+												</Button>
+											</Box>
+										</Stack>
+									</form>
 								</Box>
 							</CustomTabPanel>
 						</Box>
@@ -172,7 +229,6 @@ const ProductDetails: React.FC = () => {
 							You might also like
 						</Typography>
 					</Grid>
-
 					<ProductsList data={relatedProducts}/>
 				</Grid>
 			</Box>
