@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "../components/Helmet/Helmet";
 import CommonSection from "../components/Ui/CommonSection";
 import {
-	Box,
+	Box, Button,
 	Container,
 	Grid,
 	Paper,
@@ -15,10 +15,12 @@ import {
 } from "@mui/material";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import {useAppDispatch, useAppSelector} from "../app/hooks";
-import {cartItem, deleteItem} from "../app/cartSlice";
+import {cartItem, deleteItem, totalAmount} from "../app/cartSlice";
+import {Link} from "react-router-dom";
 
 const Cart: React.FC = () => {
 	const cartItems = useAppSelector(cartItem)
+	const totalAmountItem = useAppSelector(totalAmount)
 	const dispatch = useAppDispatch()
 
 	const deleteProduct = (id: string) => {
@@ -34,7 +36,7 @@ const Cart: React.FC = () => {
 						<TableContainer component={Paper}>
 							{
 								cartItems.length === 0 ?
-									<Typography component='h2' variant='h2'>
+									<Typography component='h2' variant='h2' p={10}>
 										No items added
 									</Typography>
 									:
@@ -75,7 +77,35 @@ const Cart: React.FC = () => {
 						</TableContainer>
 					</Grid>
 					<Grid item lg={3}>
-
+						<Box padding={2}>
+							<Box display='flex'
+							     justifyContent='space-between'
+							     alignItems='center'
+							     sx={{marginBottom: '20px'}}
+							>
+								<Typography variant='h4'
+								            typography='h4'
+								            textAlign='center'
+								>
+									Total
+								</Typography>
+								<Box fontWeight={600} textAlign='center'>
+									$ {totalAmountItem}
+								</Box>
+							</Box>
+							<Box>
+								<Button variant="contained" sx={{marginBottom: '10px'}}>
+									<Link to='/shop'>
+										Continue Shopping
+									</Link>
+								</Button>
+								<Button variant="contained">
+									<Link to='/checkout'>
+										Checkout
+									</Link>
+								</Button>
+							</Box>
+						</Box>
 					</Grid>
 				</Grid>
 			</Container>

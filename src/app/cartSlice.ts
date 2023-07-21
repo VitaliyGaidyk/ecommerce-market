@@ -73,6 +73,7 @@ const cartSlice = createSlice({
 })
 
 export const cartItem = (state: RootState): CartItem[] => state.cart.cartItems
+export const totalAmount = (state: RootState) => state.cart.totalAmount
 export const totalItem = (state: RootState): number => state.cart.totalQuantity
 
 export const {addItem, deleteItem} = cartSlice.actions
